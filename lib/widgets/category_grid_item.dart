@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/category.dart';
-import 'package:meals_app/screens/meals.dart';
-import 'package:meals_app/data/dummy_data.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem({super.key, required this.category});
+  const CategoryGridItem({super.key, required this.category, required this.onSelectCategory});
 
   final Category category;
+  final void Function(BuildContext, Category) onSelectCategory;
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +13,7 @@ class CategoryGridItem extends StatelessWidget {
       //makes the container clickable, adding listeners and getting visual feedback on tap
       // GestureDetector is another option with no visual feedback
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => MealsScreen(
-                  title: category.title,
-                  meals: dummyMeals
-                      .where((meal) => meal.categories.contains(category.id))
-                      .toList(),
-                )));
+        onSelectCategory(context, category);
       },
       splashColor: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.circular(15),
