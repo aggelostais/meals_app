@@ -1,16 +1,36 @@
-# meals_app
+# Meals App
 
-A new Flutter project.
+This is a Flutter application that allows users to browse and search for various meals, view their details, and save their favorite meals.
+
+## Features
+
+- Browse meals by categories
+- Search for meals by name or ingredients
+- View meal details including ingredients and instructions
+- Mark meals as favorites and view them in a separate favorites list
+
+## Screenshots
+
+Include some screenshots of your app here to give users a visual preview.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get started with the Meals App, follow these steps:
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository: `git clone https://github.com/your-username/meals-app.git`
+2. Navigate to the project directory: `cd meals-app`
+3. Install the dependencies: `flutter pub get`
+4. Run the app: `flutter run`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Dependencies
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This project uses the following dependencies:
+
+- Flutter: [insert version]
+- [Dependency 1]
+- [Dependency 2]
+- ...
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
