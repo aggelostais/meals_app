@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/screens/meal_details_screen.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen({super.key, required this.title, required this.meals});
+  MealsScreen({super.key, this.title, required this.meals, required this.onToggleFavorite});
 
-  final String title;
+  String? title; // Make the title optional
   final List<Meal> meals;
+  final void Function(Meal meal) onToggleFavorite; //to forward the favorite toggle
+
+  void onSelectMeal(BuildContext context, Meal meal) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => MealScreen(
+          meal: meal,
+          onToggleFavorite: onToggleFavorite,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +48,18 @@ class MealsScreen extends StatelessWidget {
               //   trailing:
               //       Text(meals[index].complexity.toString().split('.').last),
               // );
-              return MealItem(meal: meals[index]);
+              return MealItem(meal: meals[index], onSelectMeal: onSelectMeal);
             },
             itemCount: meals.length,
           );
 
-    return Scaffold(
-      //for every screen widget it is recommended to use scaffold as the base widget
-      appBar: AppBar(
-        title: Text(title), // Meals category title
-      ),
-      body: content,
-    );
+    return title != null
+        ? Scaffold(
+            appBar: AppBar(
+              title: Text(title!), // Meals category title
+            ),
+            body: content,
+          )
+        : content;
   }
 }

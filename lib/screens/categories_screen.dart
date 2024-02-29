@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/category.dart';
+import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/meals_screen.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
 import 'package:meals_app/data/dummy_data.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  const CategoriesScreen({super.key, required this.onToggleFavorite});
+
+  final void Function(Meal meal) onToggleFavorite;
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals
@@ -18,6 +21,7 @@ class CategoriesScreen extends StatelessWidget {
         builder: (context) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
+          onToggleFavorite: onToggleFavorite,
         ),
       ),
     ); //pushes the new screen on top of the current screen
@@ -25,12 +29,7 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // for multi-screen apps use scaffold as base widget
-      appBar: AppBar(
-        title: const Text('Categories'),
-      ),
-      body: GridView(
+    return GridView( // for multi-screen apps use scaffold as base widget
         padding: const EdgeInsets.all(15),
         //.builder to create a grid of categories dynamically if the list is long
         gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -47,7 +46,6 @@ class CategoriesScreen extends StatelessWidget {
             CategoryGridItem(
                 category: category, onSelectCategory: _selectCategory),
         ],
-      ),
     );
   }
 }
