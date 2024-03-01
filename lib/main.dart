@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meals_app/screens/categories_screen.dart';
 import 'package:meals_app/screens/tabs.dart';
 
 final theme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     brightness: Brightness.dark,
-    seedColor: Color.fromARGB(255, 52, 52, 52),
+    seedColor: Color.fromARGB(255, 42, 65, 86),
   ),
   textTheme: GoogleFonts.latoTextTheme(),
 );
