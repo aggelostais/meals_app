@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:meals_app/data/dummy_data.dart';
 import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/categories_screen.dart';
-import 'package:meals_app/screens/filters.dart';
-import 'package:meals_app/screens/meals_screen.dart';
+import 'package:meals_app/screens/filters_screen.dart';
+import 'package:meals_app/screens/category_meals_screen.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 
-const KInitialFilters = {
+const kInitialFilters = {
   Filter.glutenFree: false,
   Filter.lactoseFree: false,
   Filter.vegetarian: false,
@@ -71,12 +71,14 @@ class _TabsScreenState extends State<TabsScreen> {
       // It is a map with Filter as the key and bool as the value.
       final result = await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
-          builder: (context) => const FiltersScreen(),
+          builder: (context) => FiltersScreen( 
+            currentFilters: _selectedFilters,
+          ),
         ),
       );
       setState(() {
         //null is not an allowed value. ?? checks if the result is null and if it is, it returns the value after.
-        _selectedFilters = result ?? KInitialFilters;
+        _selectedFilters = result ?? kInitialFilters;
       });
     }
   }
@@ -110,7 +112,7 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Categories',
       },
       {
-        'page': MealsScreen(
+        'page': CategoryMealsScreen(
           meals: _favoriteMeals,
           onToggleFavorite: _toggleFavoriteMeals,
         ),

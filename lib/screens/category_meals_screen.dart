@@ -3,11 +3,11 @@ import 'package:meals_app/models/meal.dart';
 import 'package:meals_app/screens/meal_details_screen.dart';
 import 'package:meals_app/widgets/meal_item.dart';
 
-class MealsScreen extends StatelessWidget {
-  MealsScreen({super.key, this.title, required this.meals, required this.onToggleFavorite});
+class CategoryMealsScreen extends StatelessWidget {
+  const CategoryMealsScreen({super.key, this.title, required this.meals, required this.onToggleFavorite});
 
-  String? title; // Make the title optional
-  final List<Meal> meals;
+  final String? title; // Make the title optional
+  final List<Meal> meals; // List of meals for the category
   final void Function(Meal meal) onToggleFavorite; //to forward the favorite toggle
 
   void onSelectMeal(BuildContext context, Meal meal) {

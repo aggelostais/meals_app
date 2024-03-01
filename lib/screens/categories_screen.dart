@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/models/meal.dart';
-import 'package:meals_app/screens/meals_screen.dart';
+import 'package:meals_app/screens/category_meals_screen.dart';
 import 'package:meals_app/widgets/category_grid_item.dart';
 import 'package:meals_app/data/dummy_data.dart';
 
@@ -19,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
     // Navigator.push(ctx, route); // alternative syntax to the below
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => MealsScreen(
+        builder: (context) => CategoryMealsScreen(
           title: category.title,
           meals: filteredMeals,
           onToggleFavorite: onToggleFavorite,

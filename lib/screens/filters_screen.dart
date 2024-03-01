@@ -7,10 +7,11 @@ enum Filter { //enum is a special 'class' that represents a group of constants (
   vegan,
 }
 
-
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key});
+  const FiltersScreen({super.key, required this.currentFilters});
 
+  final Map<Filter, bool> currentFilters;
+  
   @override
   State<FiltersScreen> createState() {
     return _FiltersScreenState();
@@ -18,10 +19,23 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  bool _glutenFreeFilter = false;
+  // we cannot set the value to the currentFilters because the widget is not yet built.
+  bool _glutenFreeFilter = false; 
   bool _lactoseFreeFilter = false;
   bool _vegetarianFilter = false;
   bool _veganFilter = false;
+
+  @override
+  void initState() {
+    // workaround to set the value to the currentFilters, overwriting the prevous value.
+    // In initState we can use the widget property to access the currentFilters.
+    _glutenFreeFilter = widget.currentFilters[Filter.glutenFree]!;
+    _lactoseFreeFilter = widget.currentFilters[Filter.lactoseFree]!;
+    _vegetarianFilter = widget.currentFilters[Filter.vegetarian]!;
+    _veganFilter = widget.currentFilters[Filter.vegan]!;
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
